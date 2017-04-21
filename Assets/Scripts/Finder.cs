@@ -5,20 +5,29 @@ using UnityEngine.AI;
 
 public class Finder : MonoBehaviour {
 
-    public Transform destination;
-
     const float RayCastMaxDistance = 100.0f;
+
+    private Transform innerDestination;
+    private bool bSelected = true;
+
+    public Transform destination;
 
     // Use this for initialization
     void Start () {
-		
-	}
+        innerDestination = destination;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        transform.GetComponent<NavMeshAgent>().destination = destination.position;
+        //if(bSelected == false)
+        //{
+        //    return;
+        //}
+        transform.GetComponent<NavMeshAgent>().SetDestination(innerDestination.position);
+        //transform.GetComponent<NavMeshAgent>().ResetPath(); // it does indeed reset the path, it stops following
+        //transform.GetComponent<NavMeshAgent>().Stop(false);
 
-        if (Input.GetButtonUp("Fire1"))
+        if (Input.GetButtonUp("Fire2"))
         {
             Vector2 clickPos = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(clickPos);
@@ -33,5 +42,15 @@ public class Finder : MonoBehaviour {
                 }
             }
         }
+
+        if (bSelected == false)
+        {
+            transform.GetComponent<NavMeshAgent>().ResetPath(); // it does indeed reset the path, it stops following
+        }
+    }
+
+    public void SetSelectedUnit(bool bSelected)
+    {
+        this.bSelected = bSelected;
     }
 }
