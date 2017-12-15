@@ -54,10 +54,10 @@ public class SelectUnit : MonoBehaviour {
                     if (hit.transform.tag == "SelectableUnit")
                     {
                         selectedUnit = hit.transform.gameObject;
-                        selectedUnit.transform.FindChild("Marker").gameObject.SetActive(true);
+                        selectedUnit.transform.Find("Marker").gameObject.SetActive(true);
                         for (int i = 0; i < selectedUnits.Count; i++)
                         {
-                            selectedUnits[i].transform.FindChild("Marker").gameObject.SetActive(false);
+                            selectedUnits[i].transform.Find("Marker").gameObject.SetActive(false);
                         }
                         selectedUnits.Clear();
                     }
@@ -66,7 +66,7 @@ public class SelectUnit : MonoBehaviour {
                 {
                     for (int i = 0; i < selectedUnits.Count; i++)
                     {
-                        selectedUnits[i].transform.FindChild("Marker").gameObject.SetActive(false);
+                        selectedUnits[i].transform.Find("Marker").gameObject.SetActive(false);
                     }
                     selectedUnits.Clear();
                 }
@@ -80,15 +80,15 @@ public class SelectUnit : MonoBehaviour {
                 {
                     if (hit.transform.tag == "SelectableUnit")
                     {
-                        selectedUnit.transform.FindChild("Marker").gameObject.SetActive(false);
+                        selectedUnit.transform.Find("Marker").gameObject.SetActive(false);
                         selectedUnit = null;
                         selectedUnit = hit.transform.gameObject;
-                        selectedUnit.transform.FindChild("Marker").gameObject.SetActive(true);
+                        selectedUnit.transform.Find("Marker").gameObject.SetActive(true);
                     }
                 }
                 if (hit.transform.tag == "Ground")
                 {
-                    selectedUnit.transform.FindChild("Marker").gameObject.SetActive(false);
+                    selectedUnit.transform.Find("Marker").gameObject.SetActive(false);
                     selectedUnit = null;
                 }
             }
@@ -119,7 +119,7 @@ public class SelectUnit : MonoBehaviour {
                     selectedUnits.Add(hit.transform.gameObject);
                     for (int i = 0; i < selectedUnits.Count; i++)
                     {
-                        selectedUnits[i].transform.FindChild("Marker").gameObject.SetActive(true);
+                        selectedUnits[i].transform.Find("Marker").gameObject.SetActive(true);
                     }
                 }
             }
